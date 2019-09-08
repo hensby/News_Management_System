@@ -1,6 +1,7 @@
 # News_Management_System
-2198-CSE-5324-002 Team2 project
 
+    2198-CSE-5324-002 Team2 project
+    CSE 5324 Software Engineering I Analysis, Design, Testing
 
 Collaborators
 ====
