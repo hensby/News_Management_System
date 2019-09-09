@@ -22,7 +22,7 @@ name | Email | student id
 -|-|-
 Hengchao Wang | hengchao.wang@mavs.uta.edu | 1001778272
 Wuxuan Yang  | wuxuan.yang@mavs.uta.edu | 1001780930
-Yipu Qin | yipu.qin@mavs.uta.edu | 
+Yipu Qin | yipu.qin@mavs.uta.edu | 1001780942
 
 ##  <a name='Docs'></a>Docs
 * [Inception(Written Deliverable)](https://docs.google.com/document/d/1Rhmbc3Yms2fX0Om6TTw0Jvc0ZzU6N31lgVby1VVswgM/edit?usp=sharing)<br>
