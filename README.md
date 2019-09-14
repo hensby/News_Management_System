@@ -19,7 +19,7 @@
 ##  <a name='Collaborators'></a>Collaborators
 
 name | Email 
--|-|-
+-|-
 Hengchao Wang | hengchao.wang@mavs.uta.edu 
 Wuxuan Yang  | wuxuan.yang@mavs.uta.edu 
 Yipu Qin | yipu.qin@mavs.uta.edu 
