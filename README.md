@@ -30,6 +30,7 @@ Yipu Qin | yipu.qin@mavs.uta.edu
 * [Iteration1(Written)](https://docs.google.com/presentation/d/1XKdoUZgeQ8CaxGgrqFjCaCm6UXsMDL3Cuk-MpV_A6xQ/edit?usp=sharing)
 * [Iteration1(Presentation)](https://docs.google.com/presentation/d/1XKdoUZgeQ8CaxGgrqFjCaCm6UXsMDL3Cuk-MpV_A6xQ/edit?usp=sharing)
 
+## Version information
 * Spring-boot	version: 2.1.8.RELEASE 
 * Lombok		version: 1.18.10
 * MariaDB		version: 10.4 Series
