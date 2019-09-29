@@ -29,3 +29,8 @@ Yipu Qin | yipu.qin@mavs.uta.edu
 * [Inception(Presentation)](https://docs.google.com/presentation/d/1Ecqu4M4ZMOHqGux18yNNcmOlejBv5U4HIbhzxeJpIPw/edit?usp=sharing)
 * [Iteration1(Written)](https://docs.google.com/presentation/d/1XKdoUZgeQ8CaxGgrqFjCaCm6UXsMDL3Cuk-MpV_A6xQ/edit?usp=sharing)
 * [Iteration1(Presentation)](https://docs.google.com/presentation/d/1XKdoUZgeQ8CaxGgrqFjCaCm6UXsMDL3Cuk-MpV_A6xQ/edit?usp=sharing)
+
+## Version information
+* Spring-boot  ==2.1.8.RELEASE 
+* Lombok  ==1.18.10
+* MariaDB  ==10.4 Series
