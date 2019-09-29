@@ -34,3 +34,5 @@ Yipu Qin | yipu.qin@mavs.uta.edu
 * Spring-boot  ==2.1.8.RELEASE 
 * Lombok  ==1.18.10
 * MariaDB  ==10.4 Series
+* Java ==	version: 1.8
+* Maven	==	version: 3.6.2
