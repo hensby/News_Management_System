@@ -18,7 +18,7 @@ public class MyInterceptor implements HandlerInterceptor{
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         if (handler instanceof HandlerMethod) {
             LoginRequired loginRequired = findAnnotation((HandlerMethod) handler, LoginRequired.class);
-            //没有声明需要权限,或者声明不验证权限
+            //without authority
             if(loginRequired==null){
                 return true;
             }else{

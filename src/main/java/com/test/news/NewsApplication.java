@@ -15,7 +15,7 @@ public class NewsApplication {
 
 	@Configuration
 	static class WebMvcConfigurer extends WebMvcConfigurerAdapter {
-		//增加拦截器
+		//add interceptor
 		public void addInterceptors(InterceptorRegistry registry){
 			registry.addInterceptor(new MyInterceptor())    //Specify interceptor class
 					.addPathPatterns("/**");        //Specify url of interceptor class

@@ -14,7 +14,7 @@ import java.util.Date;
  */
 @Data
 @Entity
-public class User {
+public class User {                         //using lombok to create get(),set() auto
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
