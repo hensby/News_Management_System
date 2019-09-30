@@ -1,0 +1,71 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<!--Head-->
+<head>
+    <meta charset="utf-8" />
+    <title>Login Page</title>
+
+    <link rel="shortcut icon" href="../assets/img/favicon.png" type="image/x-icon">
+
+    <!--Basic Styles-->
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link id="bootstrap-rtl-link" href="" rel="stylesheet" />
+    <link href="../assets/css/font-awesome.min.css" rel="stylesheet" />
+
+    <!--Beyond styles-->
+    <link id="beyond-link" href="../assets/css/beyond.min.css" rel="stylesheet" />
+    <link href="../assets/css/demo.min.css" rel="stylesheet" />
+    <link href="../assets/css/animate.min.css" rel="stylesheet" />
+    <link id="skin-link" href="" rel="stylesheet" type="text/css" />
+
+
+</head>
+<!--Head Ends-->
+<!--Body-->
+<body>
+<div class="login-container animated fadeInDown">
+    <div class="loginbox bg-white">
+        <div class="loginbox-title">Admin Login In</div>
+        <div class="loginbox-textbox" style="margin-top:50px;">
+            <input type="text" class="form-control" id="name" placeholder="UserName" />
+        </div>
+        <div class="loginbox-textbox">
+            <input type="password" class="form-control" id="pwd" placeholder="Password" />
+        </div>
+        <div class="loginbox-submit" style="margin-top:140px;">
+            <input type="button" class="btn btn-primary btn-block" onclick="login()" value="Login">
+        </div>
+    </div>
+
+</div>
+
+<!--Basic Scripts-->
+<script src="../assets/js/jquery-2.0.3.min.js"></script>
+<script src="../layer/layer.js"></script>
+<script>
+    function login() {
+        console.log({
+            name:$("#name").val(),
+            pwd:$("#pwd").val()
+        });
+        $.ajax({
+            url:"/system/login",    //请求的url地址
+            dataType:"json",   //返回格式为json
+            type:"POST",   //请求方式
+            data:{
+                name:$("#name").val(),
+                pwd:$("#pwd").val()
+            },
+            success:function(req){
+                if(req=="true" || req ==true){
+                    window.location.href="/system/";
+                }else{
+                    layer.alert('username or password is wrong！');
+                }
+
+            }
+        });
+    }
+</script>
+</body>
+<!--Body Ends-->
+</html>

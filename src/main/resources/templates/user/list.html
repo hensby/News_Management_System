@@ -2,7 +2,7 @@
     <div class="widget-body">
         <div class="table-toolbar">
             <a id="editabledatatable_new" href="javascript:void(0);" onclick="save()" class="btn btn-default btn-success">
-                新增用户
+                Add news
             </a>
         </div>
         <table class="table table-striped table-hover table-bordered" id="editabledatatable">
@@ -12,16 +12,16 @@
                         ID
                     </th>
                     <th>
-                        用户名
+                        Username
                     </th>
                     <th>
-                        创建时间
+                        Create time
                     </th>
                     <th>
-                        更新时间
+                        Update time
                     </th>
                     <th>
-                        操作
+                        Operations
                     </th>
                 </tr>
             </thead>
@@ -33,8 +33,8 @@
                     <td th:text="${user.createTime}">alex</td>
                     <td th:text="${user.updateTime}">Alex Nilson</td>
                     <td>
-                        <a href="#" th:attr="pid=${user.id},pName=${user.name}"  onclick="save(this)"  class="btn btn-info btn-xs"><i class="fa fa-edit"></i> 编辑</a>
-                        <a href="#" th:attr="pid=${user.id},pName=${user.name}"  onclick="del(this)"  class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> 删除</a>
+                        <a href="#" th:attr="pid=${user.id},pName=${user.name}"  onclick="save(this)"  class="btn btn-info btn-xs"><i class="fa fa-edit"></i> Edit</a>
+                        <a href="#" th:attr="pid=${user.id},pName=${user.name}"  onclick="del(this)"  class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete</a>
                     </td>
                  </tr>
             </tbody>
@@ -51,15 +51,15 @@
                 <div class="collapse in">
                     <form role="form">
                         <div class="form-group">
-                            <label>登陆名称</label>
-                            <input type="text" class="form-control input-sm userName"  user_name placeholder="登陆名称">
+                            <label>Username</label>
+                            <input type="text" class="form-control input-sm userName"  user_name placeholder="Username">
                         </div>
                         <div class="form-group">
-                            <label>密码</label>
-                            <input type="password" class="form-control input-sm userPwd" user_pwd   placeholder="请输入密码">
+                            <label>password</label>
+                            <input type="password" class="form-control input-sm userPwd" user_pwd   placeholder="Password">
                         </div>
                     </form>
-                    <a href="javascript:void(0);" class="btn btn-primary" onclick="saveData()">保存</a>
+                    <a href="javascript:void(0);" class="btn btn-primary" onclick="saveData()">Save</a>
                 </div>
             </div>
         </div>
@@ -91,7 +91,7 @@
         }
         layer.open({
             type: 1,
-            title:"编辑用户",
+            title:"Edit",
             skin: 'layui-layer-rim', //加上边框
             area: ['600px', '280px'], //宽高
             content: $("#userInfo").html().replace("user_name",'value="'+name+'"')
@@ -99,8 +99,8 @@
     }
     
     function saveData() {
-        layer.confirm('你确定需要保存？', {
-            btn: ['确定','取消'] //按钮
+        layer.confirm('Are you sure you want to save？', {
+            btn: ['Yes','Cancel'] //按钮
         }, function(){
             layer.closeAll();
             $.ajax({
@@ -122,8 +122,8 @@
     }
 
     function del(b) {
-        layer.confirm('你确定需要删除？', {
-            btn: ['确定','取消'] //按钮
+        layer.confirm('Are you sure you want to delate？', {
+            btn: ['Yes','Cancel'] //按钮
         }, function(){
             layer.closeAll();
             $.ajax({

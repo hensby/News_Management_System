@@ -36,7 +36,7 @@ public class UserService {
     }
 
     public User findById(Integer id){
-        return  userRepository.findById(id).orElse(new User());
+        return  userRepository.findById(id).orElse(new User());         //find by id. orelse() is to ignor Null pointer exception
     }
 
 }
