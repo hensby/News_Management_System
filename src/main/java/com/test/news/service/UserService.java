@@ -30,7 +30,6 @@ public class UserService {
         userRepository.save(user);
     }
 
-
     public void del(Integer id){
         userRepository.deleteById(id);
     }
@@ -38,5 +37,4 @@ public class UserService {
     public User findById(Integer id){
         return  userRepository.findById(id).orElse(new User());         //find by id. orelse() is to ignor Null pointer exception
     }
-
 }
