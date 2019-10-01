@@ -48,9 +48,9 @@
             pwd:$("#pwd").val()
         });
         $.ajax({
-            url:"/system/login",    //请求的url地址
-            dataType:"json",   //返回格式为json
-            type:"POST",   //请求方式
+            url:"/system/login",    //URL ADDRESS
+            dataType:"json",   //return json
+            type:"POST",   //way
             data:{
                 name:$("#name").val(),
                 pwd:$("#pwd").val()
@@ -59,9 +59,8 @@
                 if(req=="true" || req ==true){
                     window.location.href="/system/";
                 }else{
-                    layer.alert('username or password is wrong！');
+                    layer.alert('Username or password is wrong',{icon: 1, title:'info',btn:'cancel'});
                 }
-
             }
         });
     }
