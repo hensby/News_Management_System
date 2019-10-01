@@ -27,7 +27,7 @@ Yipu Qin | yipu.qin@mavs.uta.edu
 ##  <a name='Docs'></a>Docs
 * [Inception(Written Deliverable)](https://docs.google.com/document/d/1Rhmbc3Yms2fX0Om6TTw0Jvc0ZzU6N31lgVby1VVswgM/edit?usp=sharing)<br>
 * [Inception(Presentation)](https://docs.google.com/presentation/d/1Ecqu4M4ZMOHqGux18yNNcmOlejBv5U4HIbhzxeJpIPw/edit?usp=sharing)
-* [Iteration1(Written)](https://docs.google.com/presentation/d/1XKdoUZgeQ8CaxGgrqFjCaCm6UXsMDL3Cuk-MpV_A6xQ/edit?usp=sharing)
+* [Iteration1(Written)](https://docs.google.com/document/d/1xojJuxG4TjK_5rMOHoKnia8X3puUgZmVg5vDwJo0rZQ/edit?usp=sharing)
 * [Iteration1(Presentation)](https://docs.google.com/presentation/d/1XKdoUZgeQ8CaxGgrqFjCaCm6UXsMDL3Cuk-MpV_A6xQ/edit?usp=sharing)
 
 ## Version information
