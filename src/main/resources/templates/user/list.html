@@ -92,8 +92,8 @@
         layer.open({
             type: 1,
             title:"Edit",
-            skin: 'layui-layer-rim', //加上边框
-            area: ['600px', '280px'], //宽高
+            skin: 'layui-layer-rim', //frame
+            area: ['600px', '280px'], //weight height
             content: $("#userInfo").html().replace("user_name",'value="'+name+'"')
         });
     }
@@ -123,7 +123,7 @@
 
     function del(b) {
         layer.confirm('Are you sure you want to delate？', {
-            btn: ['Yes','Cancel'] //button
+            title:'info',btn: ['Yes','Cancel'] //button
         }, function(){
             layer.closeAll();
             $.ajax({
