@@ -36,3 +36,9 @@ Yipu Qin | yipu.qin@mavs.uta.edu
 * MariaDB  ==10.4 Series
 * Java == 1.8
 * Maven	==	3.6.2
+
+## Instructions & Readme 
+* Install MySQL or MariaDB databases.
+* Create a database named news.
+* Build the system. It will create tables in the database automatically. 
+* Run the NewsApplication.java in project dictionary News_Management_System\src\main\java\com\test\news.
