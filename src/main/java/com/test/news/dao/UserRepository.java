@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
  * Created by Administrator on 2019/9/21.
  */
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<User, Integer> {      //extend jpa to operate db
     User findByName(String name);
 
     void  deleteById(Integer id);

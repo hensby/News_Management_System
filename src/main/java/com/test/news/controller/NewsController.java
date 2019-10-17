@@ -20,8 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author zengliming
- * @date 2018/3/22 17:12
+ * @author hengchao wang
+ * @date 2019/9/22 17:12
  */
 @Controller
 @RequestMapping("news")

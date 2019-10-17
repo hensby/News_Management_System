@@ -47,6 +47,7 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+
 		<!-- https://mvnrepository.com/artifact/net.sourceforge.nekohtml/nekohtml -->
 		<dependency>
 			<groupId>net.sourceforge.nekohtml</groupId>
@@ -96,6 +97,34 @@
 					<compilerArguments>
 						<extdirs>${project.basedir}/lib</extdirs>
 					</compilerArguments>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.github.spotbugs</groupId>
+				<artifactId>spotbugs-maven-plugin</artifactId>
+				<version>3.1.12.2</version>
+				<dependencies>
+					<!-- overwrite dependency on spotbugs if you want to specify the version of spotbugs -->
+					<dependency>
+						<groupId>com.github.spotbugs</groupId>
+						<artifactId>spotbugs</artifactId>
+						<version>4.0.0-beta4</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<plugins>
+						<plugin>
+							<groupId>com.mebigfatguy.sb-contrib</groupId>
+							<artifactId>sb-contrib</artifactId>
+							<version>7.4.6</version>
+						</plugin>
+						<!-- https://mvnrepository.com/artifact/com.h3xstream.findsecbugs/findsecbugs-plugin -->
+						<plugin>
+							<groupId>com.h3xstream.findsecbugs</groupId>
+							<artifactId>findsecbugs-plugin</artifactId>
+							<version>1.9.0</version>
+						</plugin>
+					</plugins>
 				</configuration>
 			</plugin>
 		</plugins>

@@ -10,7 +10,7 @@ import java.util.List;
  * Created by Administrator on 2019/9/28.
  */
 @Repository
-public interface SystemUserRepository extends JpaRepository<SystemUser,Integer>{
+public interface SystemUserRepository extends JpaRepository<SystemUser,Integer>{     //extend jpa to operate db
 
     List<SystemUser> findByName(String name);
 }

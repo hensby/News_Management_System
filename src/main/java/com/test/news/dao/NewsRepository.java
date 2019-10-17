@@ -8,11 +8,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * @author zengliming
- * @date 2018/3/22 17:02
+ * @author hengchao wang
+ * @date 2019/9/22 17:02
  */
 @Repository
-public interface NewsRepository extends JpaRepository<News, Integer> {
+public interface NewsRepository extends JpaRepository<News, Integer> {          //extend jpa to operate db
 
         List<News> findByTypeIdOrderByDate(Integer typeId);
 

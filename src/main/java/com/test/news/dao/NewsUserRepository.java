@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * Created by Administrator on 2018/3/27.
+ * Created by Administrator on 2019/9/27.
  */
 @Repository
 public interface NewsUserRepository extends JpaRepository<NewsUser, Integer> {
