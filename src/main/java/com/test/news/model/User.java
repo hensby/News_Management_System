@@ -9,8 +9,8 @@ import javax.persistence.Id;
 import java.util.Date;
 
 /**
- * @author zengliming
- * @date 2018/3/20 17:46
+ * @author hengchao wang
+ * @date 2019/9/20 17:46
  */
 @Data
 @Entity
