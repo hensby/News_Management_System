@@ -52,7 +52,7 @@ public class NewsController {
     @RequestMapping("info")
     public String info(Model model, Integer id, HttpSession session)throws Exception{
         News news = newsService.findOne(id);
-        //阅读记录
+        //read
         User user = (User) session.getAttribute("user");
         if(user!=null){
             NewsUser newsUser = newsUserRepository.findByUserId(user.getId());
