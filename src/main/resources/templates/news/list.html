@@ -1,0 +1,86 @@
+<div class="row" xmlns:th="http://www.w3.org/1999/xhtml" >
+    <div class="widget-body">
+        <div class="table-toolbar">
+            <a  href="javascript:void(0);" onclick="save(this)"
+               class="btn btn-default btn-success">
+                Add news
+            </a>
+        </div>
+        <table class="table table-striped table-hover table-bordered" id="editabledatatable">
+            <thead>
+            <tr role="row">
+                <th>title</th>
+                <th>type</th>
+                <th>author</th>
+                <th>read times</th>
+                <th>time</th>
+                <th>operate</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="news:${newsList}">
+                <td th:text="${news.title}"></td>
+                <td th:text="${news.typeName}"></td>
+                <td th:text="${news.author}"></td>
+                <td th:text="${news.num}"></td>
+                <td th:text="${news.date}"></td>
+                <td>
+                    <div class="btn-group">
+                        <a href="#" th:attr="pid=${news.id}"  onclick="save(this)"  class="btn btn-info btn-xs"><i class="fa fa-edit"></i> edit</a>
+                        <a href="#" th:attr="pid=${news.id}"  onclick="del(this)"  class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> delete</a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+<script src="../assets/js/jquery-2.0.3.min.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
+<script src="../assets/js/beyond.min.js"></script>
+<script src="../assets/js/datatable/jquery.dataTables.min.js"></script>
+<script src="../assets/js/datatable/ZeroClipboard.js"></script>
+<script src="../assets/js/datatable/dataTables.tableTools.min.js"></script>
+<script src="../assets/js/datatable/dataTables.bootstrap.min.js"></script>
+<script src="../assets/js/datatable/datatables-init.js"></script>
+<script src="../layer/layer.js"></script>
+<script>
+    InitiateEditableDataTable.init();
+    $(".DTTT").hide();
+
+    function save(b) {
+        $.ajax({
+            url:'/news/savePage',    //Url address
+            dataType:"html",   //return json
+            type:"GET",   //way
+            data:{
+                id:$(b).attr("pid")
+            },
+            success:function(req){
+                $(".page-content").html(req);
+            }
+        });
+    }
+
+    function del(b) {
+        layer.confirm('Are you sure you want to delete？', {
+            btn: ['Yes','Cancel'] //Button
+        }, function(){
+            $.ajax({
+                url:"/news/del",    //URL address
+                dataType:"text",   //return json
+                type:"POST",   //post way
+                data:{
+                    id:$(b).attr("pid")
+                },
+                success:function(req){
+                    layer.closeAll();
+                    $("#newsMag").click();
+                }
+            });
+        }, function(){
+        });
+    }
+</script>

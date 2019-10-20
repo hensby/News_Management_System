@@ -1,0 +1,63 @@
+<div class="row">
+    <div class="widget-body">
+        <table class="table table-striped table-hover table-bordered" id="editabledatatable">
+            <thead>
+            <tr role="row">
+                <th>title</th>
+                <th>comments</th>
+                <th>comments user</th>
+                <th>time</th>
+                <th>operate</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="news:${list}">
+                <td th:text="${news.tile}"></td>
+                <td th:text="${news.content}"></td>
+                <td th:text="${news.userName}"></td>
+                <td th:text="${news.date}"></td>
+                <td>
+                    <div class="btn-group">
+                        <a href="#" th:attr="pid=${news.id}"  onclick="del(this)"  class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> delete</a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+<script src="../assets/js/jquery-2.0.3.min.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
+<script src="../assets/js/beyond.min.js"></script>
+<script src="../assets/js/datatable/jquery.dataTables.min.js"></script>
+<script src="../assets/js/datatable/ZeroClipboard.js"></script>
+<script src="../assets/js/datatable/dataTables.tableTools.min.js"></script>
+<script src="../assets/js/datatable/dataTables.bootstrap.min.js"></script>
+<script src="../assets/js/datatable/datatables-init.js"></script>
+<script src="../layer/layer.js"></script>
+<script>
+    InitiateEditableDataTable.init();
+    $(".DTTT").hide();
+
+    function del(b) {
+        layer.confirm('Are you sure you want to delete？？', {
+            btn: ['Yes','Cancel'] //按钮
+        }, function(){
+            $.ajax({
+                url:"/comment/del",    //请求的url地址
+                dataType:"text",   //返回格式为json
+                type:"POST",   //请求方式
+                data:{
+                    id:$(b).attr("pid")
+                },
+                success:function(req){
+                    layer.closeAll();
+                    $("#commentMag").click();
+                }
+            });
+        }, function(){
+        });
+    }
+</script>
