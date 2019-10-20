@@ -3,6 +3,7 @@ package com.test.news.controller.system;
 import com.test.news.LoginRequired;
 import com.test.news.model.User;
 import com.test.news.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import java.util.Date;
 /**
  * Created by Administrator on 2018/3/23.
  */
+@Slf4j
 @Controller
 @RequestMapping("user")
 public class UserController {
@@ -41,13 +43,16 @@ public class UserController {
     @ResponseBody
     public boolean save(User user){
         if(user.getId()==null){
+//            log.info("aaaaaaaaaa"+user.getCreateTime().toString());
            user.setCreateTime(new Date());
         }else{
+//            User u2 = userService.findById(user.getId());
             User u2 = userService.findByName(user.getName());
-            if(u2==null){
+//            if(u2==null){
                 user.setCreateTime(userService.findById(user.getId()).getCreateTime());
-            }
+//            }
         }
+//        log.info("cccccccccccc"+user.getCreateTime().toString());
         user.setUpdateTime(new Date());
         userService.save(user);
         return true;
