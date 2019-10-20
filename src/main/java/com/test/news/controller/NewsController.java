@@ -24,6 +24,7 @@ import java.util.List;
  * @author hengchao wang
  * @date 2019/10/13 17:12
  */
+
 @Slf4j
 @Controller
 @RequestMapping("news")
@@ -71,7 +72,6 @@ public class NewsController {
         model.addAttribute("news",news);
         return "news/showNews";
     }
-
 
 
     @RequestMapping("listByType")
