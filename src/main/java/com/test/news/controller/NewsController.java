@@ -8,6 +8,7 @@ import com.test.news.model.NewsUser;
 import com.test.news.model.User;
 import com.test.news.service.NewsService;
 import com.test.news.service.NewsTypeService;
+import lombok.extern.slf4j.Slf4j;
 import org.fnlp.nlp.cn.CNFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,7 @@ import java.util.List;
  * @author hengchao wang
  * @date 2019/9/22 17:12
  */
+@Slf4j
 @Controller
 @RequestMapping("news")
 public class NewsController {
@@ -127,6 +129,10 @@ public class NewsController {
     @RequestMapping("save")
     @ResponseBody
     public boolean save(Model model,News news)throws Exception{
+        if ("<p><br></p>".equals(news.getContent())){
+//            log.info("qweqweqweqwe"+news.getContent());
+            news.setContent(newsService.getOne(news.getId()).getContent());
+        }
         newsService.save(news);
         return true;
     }
