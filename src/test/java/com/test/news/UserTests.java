@@ -40,7 +40,7 @@ public class UserTests {
     @Test
     public void testLogin() throws Exception {
         Map<String, String> map = new HashMap<String,String>();
-        map.put("hensby", "123,true");map.put("asd", "123,true");map.put("admin", "admin,false");
+        map.put("hensby", "123456,true");map.put("tom", "123,true");map.put("admin", "admin,false");
         map.put("", "admin,false");map.put("admin", " ,false");
         Object[] l;
         l = map.keySet().toArray();
