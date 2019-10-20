@@ -42,7 +42,11 @@ public class UserController {
     @RequestMapping(value = "save")
     @ResponseBody
     public boolean save(User user){
-        if(user.getId()==null){
+        log.info("ksjzdhfkjsadhfj"+user.getPwd());
+        if (user.getPwd().isEmpty()||user.getName().isEmpty()){
+            return false;
+        }
+        if (user.getId()==null){
 //            log.info("aaaaaaaaaa"+user.getCreateTime().toString());
            user.setCreateTime(new Date());
         }else{

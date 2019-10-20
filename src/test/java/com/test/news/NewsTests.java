@@ -37,7 +37,9 @@ public class NewsTests {
     public void testNews() throws Exception {
         Map<String, String> map = new HashMap<String,String>();
         map.put("INVESTIGATING HUMAN INFERTILITY VIA THE WATER FLEA","127,1,TUESDAY OCT 15 2019 • DANA JENNINGS : UT ARLINGTON MEDIA RELATIONS,<p><br></p>,true");
-        map.put("INVESTIGATING HUMAN INFERTILITY VIA THE WATER FLEA","127,1,TUESDAY OCT 15 2019 • DANA JENNINGS : UT ARLINGTON MEDIA RELATIONS,<p><br></p>,true");
+        map.put("INVESTIGATING HUMAN INFERTILITY VIA THE WATER FLEA1","127,2,TUESDAY OCT 15 2019 • DANA JENNINGS : UT ARLINGTON MEDIA RELATIONS,<p><br></p>,true");
+        map.put("INVESTIGATING HUMAN INFERTILITY VIA THE WATER FLEA2","127,2,TUESDAY OCT 15 2019 • DANA JENNINGS : UT ARLINGTON MEDIA RELATIONS,<p><br></p>,true");
+        map.put("INVESTIGATING HUMAN INFERTILITY VIA THE WATER FLEA3","127,1,test,<p><br></p>,true");
         //edit news
         map.put("test",",1,test,<p>test</p>,true");             //add news
 
