@@ -1,6 +1,9 @@
 package com.test.news.controller;
 
-import com.test.news.FNLPUtil;
+import ch.qos.logback.core.net.SyslogOutputStream;
+import com.microsoft.azure.cognitiveservices.search.newssearch.BingNewsSearchAPI;
+import com.microsoft.azure.cognitiveservices.search.newssearch.BingNewsSearchManager;
+import com.test.news.service.BingNewsSearchService;
 import com.test.news.LoginRequired;
 import com.test.news.dao.NewsUserRepository;
 import com.test.news.model.News;
@@ -8,6 +11,7 @@ import com.test.news.model.NewsUser;
 import com.test.news.model.User;
 import com.test.news.service.NewsService;
 import com.test.news.service.NewsTypeService;
+import com.test.news.service.BingNewsSearchService;
 import lombok.extern.slf4j.Slf4j;
 import org.fnlp.nlp.cn.CNFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,10 +46,15 @@ public class NewsController {
     @Autowired
     NewsUserRepository newsUserRepository;
 
+    BingNewsSearchService bingNewsSearchService;
+
     @LoginRequired
     @RequestMapping("list.htm")
     public String newsList(Model model)throws Exception{
+
         List<News> news = newsService.findAll();
+
+        log.info("1111111");
         model.addAttribute("newsList",news);
         return "news/list";
     }
@@ -70,6 +79,7 @@ public class NewsController {
         news.setNum(news.getNum()+1);
         newsService.save(news);
         model.addAttribute("news",news);
+        log.info("2222222");
         return "news/showNews";
     }
 
@@ -78,6 +88,19 @@ public class NewsController {
     public String listByType(Model model,Integer typeId){
         List<News> news = newsService.listByType(typeId);
         model.addAttribute("newsList",news);
+        try {
+            //=============================================================
+            // Authenticate
+            // Set the BING_SEARCH_V7_SUBSCRIPTION_KEY environment variable with your subscription key,
+            // then reopen your command prompt or IDE. If not, you may get an API key not found exception.
+            final String subscriptionKey = "048f8f4715ce4aa8bef4eded60bd44e2";
+            BingNewsSearchAPI bingNewsSearchAPIClient = BingNewsSearchManager.authenticate(subscriptionKey);
+            bingNewsSearchService.runSample(bingNewsSearchAPIClient);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+        log.info("333333");
         return "news/showList";
     }
 

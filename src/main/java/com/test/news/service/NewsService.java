@@ -85,7 +85,6 @@ public class NewsService {
     }
 
 
-
     public List<News> findAll(){
         Sort sort = new Sort(Sort.Direction.DESC, "date");
         List<News> list= newsRepository.findAll(sort);
@@ -108,10 +107,12 @@ public class NewsService {
         if(news.getId()==null){
             news.setDate(new Date());
             news.setNum(0);
+            news.setIsTop(true);            //check the news from.
         }else{
             News n1 = newsRepository.findById(news.getId()).orElse(new News());
             news.setDate(n1.getDate());
             news.setNum(n1.getNum());
+            news.setIsTop(n1.getIsTop());
         }
         news = newsRepository.save(news);
         String []tips = cnFactory.seg(news.getTitle());
@@ -133,5 +134,6 @@ public class NewsService {
     public News getOne(Integer id){
         return newsRepository.findById(id).orElse(new News());
     }
+
 
 }
