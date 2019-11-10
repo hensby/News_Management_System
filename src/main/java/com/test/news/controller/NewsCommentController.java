@@ -31,29 +31,29 @@ public class NewsCommentController {
 
     @LoginRequired
     @RequestMapping("list")
-    public String list(Model model){
+    public String list(Model model) {
         List<NewsComment> list = newsCommentService.findList();
-        model.addAttribute("list",list);
+        model.addAttribute("list", list);
         return "comment/list";
     }
 
     @LoginRequired
     @RequestMapping("del")
     @ResponseBody
-    public void del(Integer id){
+    public void del(Integer id) {
         newsCommentService.del(id);
     }
 
 
     @RequestMapping("add")
     @ResponseBody
-    public int add(String content, Integer newsId , HttpSession session){
+    public int add(String content, Integer newsId, HttpSession session) {
         User user = (User) session.getAttribute("user");
-        if(user==null){
+        if (user == null) {
             return 0;
         }
 
-        if (newsCommentService.checkComment(content)){
+        if (newsCommentService.checkComment(content)) {
             NewsComment comment = new NewsComment();
             comment.setUserId(user.getId());
             comment.setContent(content);
@@ -62,16 +62,15 @@ public class NewsCommentController {
             comment.setDate(new Date());
             newsCommentService.save(comment);
             return 1;
-        }else {
-        return 2;
+        } else {
+            return 2;
         }
     }
 
 
-
     @RequestMapping("check")
     @ResponseBody
-    public void check(String comment){
+    public void check(String comment) {
         try {
             App pd = new App("HEhkJRQ68O4zUw9KeTxpBHZwTJjZYYw6hWBAUh4NnbI");
             // for single sentences

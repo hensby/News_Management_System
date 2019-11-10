@@ -32,7 +32,7 @@ public class NewsCommentService {
     @Autowired
     private NewsRepository newsRepository;
 
-    public  List<NewsComment> findList(){
+    public List<NewsComment> findList() {
         List<NewsComment> list = newsCommentRepository.findAll();
         for (NewsComment newsComment : list) {
             User user = userRepository.findById(newsComment.getUserId()).orElse(new User());
@@ -43,18 +43,18 @@ public class NewsCommentService {
         return list;
     }
 
-    public  void del(Integer id){
+    public void del(Integer id) {
         newsCommentRepository.deleteById(id);
     }
 
-    public void save(NewsComment newsComment){
+    public void save(NewsComment newsComment) {
         News news = newsRepository.findById(newsComment.getNewsId()).orElse(new News());
-        news.setNum(news.getNum()+1);
+        news.setNum(news.getNum() + 1);
         newsRepository.save(news);
         newsCommentRepository.save(newsComment);
     }
 
-    public boolean checkComment(String comment){
+    public boolean checkComment(String comment) {
         try {
             App pd = new App("HEhkJRQ68O4zUw9KeTxpBHZwTJjZYYw6hWBAUh4NnbI");
             // for single sentences
@@ -66,9 +66,9 @@ public class NewsCommentService {
             Matcher m = r.matcher(abuse);
             m.find();
             double abusive = Double.parseDouble(m.group(0));
-            if (abusive>=0.8){
+            if (abusive >= 0.8) {
                 return false;
-            }else {
+            } else {
                 return true;
             }
         } catch (Exception e) {

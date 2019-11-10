@@ -1,7 +1,7 @@
-<div class="row" xmlns:th="http://www.w3.org/1999/xhtml" >
+<div class="row" xmlns:th="http://www.w3.org/1999/xhtml">
     <div class="widget-body">
         <div class="table-toolbar">
-            <a  href="javascript:void(0);" onclick="save(this)"
+            <a href="javascript:void(0);" onclick="save(this)"
                class="btn btn-default btn-success">
                 Add news
             </a>
@@ -27,8 +27,10 @@
                 <td th:text="${news.date}"></td>
                 <td>
                     <div class="btn-group">
-                        <a href="#" th:attr="pid=${news.id}"  onclick="save(this)"  class="btn btn-info btn-xs"><i class="fa fa-edit"></i> edit</a>
-                        <a href="#" th:attr="pid=${news.id}"  onclick="del(this)"  class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> delete</a>
+                        <a href="#" th:attr="pid=${news.id}" onclick="save(this)" class="btn btn-info btn-xs"><i
+                                class="fa fa-edit"></i> edit</a>
+                        <a href="#" th:attr="pid=${news.id}" onclick="del(this)" class="btn btn-danger btn-xs"><i
+                                class="fa fa-trash-o"></i> delete</a>
                     </div>
                 </td>
             </tr>
@@ -52,13 +54,13 @@
 
     function save(b) {
         $.ajax({
-            url:'/news/savePage',    //Url address
-            dataType:"html",   //return json
-            type:"GET",   //way
-            data:{
-                id:$(b).attr("pid")
+            url: '/news/savePage',    //Url address
+            dataType: "html",   //return json
+            type: "GET",   //way
+            data: {
+                id: $(b).attr("pid")
             },
-            success:function(req){
+            success: function (req) {
                 $(".page-content").html(req);
             }
         });
@@ -66,21 +68,21 @@
 
     function del(b) {
         layer.confirm('Are you sure you want to delete？', {
-            title:'info', btn: ['Yes','Cancel'] //Button
-        }, function(){
+            title: 'info', btn: ['Yes', 'Cancel'] //Button
+        }, function () {
             $.ajax({
-                url:"/news/del",    //URL address
-                dataType:"text",   //return json
-                type:"POST",   //post way
-                data:{
-                    id:$(b).attr("pid")
+                url: "/news/del",    //URL address
+                dataType: "text",   //return json
+                type: "POST",   //post way
+                data: {
+                    id: $(b).attr("pid")
                 },
-                success:function(req){
+                success: function (req) {
                     layer.closeAll();
                     $("#newsMag").click();
                 }
             });
-        }, function(){
+        }, function () {
         });
     }
 </script>

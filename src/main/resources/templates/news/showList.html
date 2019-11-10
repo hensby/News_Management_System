@@ -1,4 +1,4 @@
-<div th:each="news:${newsList}"   class="tab-pane in active">
+<div th:each="news:${newsList}" class="tab-pane in active">
     <div style="background-color: #2a6496; height: 2px;width: 100%;"></div>
     <p><a href="#" th:text="${news.title}" th:attr="pid=${news.id}" onclick="newsInfo(this)"></a></p>
     <p>
@@ -7,23 +7,24 @@
         <span style="margin-left: 300px;" th:text="'Read times：'+${news.num}">Times</span>
     </p>
     <p>
-        <a onclick="tipList(this)" href="#" th:attr="tip=${tip.tip}" th:each="tip:${news.tips}" th:text="'#'+${tip.tip}"></a>
+        <a onclick="tipList(this)" href="#" th:attr="tip=${tip.tip}" th:each="tip:${news.tips}"
+           th:text="'#'+${tip.tip}"></a>
     </p>
 </div>
 <script>
     function newsInfo(b) {
         $.ajax({
-            url:"/news/info",    //url address
-            dataType:"html",   //return json
-            type:"POST",   //way
-            data:{
-                id:$(b).attr("pid")
+            url: "/news/info",    //url address
+            dataType: "html",   //return json
+            type: "POST",   //way
+            data: {
+                id: $(b).attr("pid")
             },
-            success:function(req){
+            success: function (req) {
                 layer.open({
                     type: 1,
                     skin: 'layui-layer-rim', //add frame
-                    title:'News info',
+                    title: 'News info',
                     area: ['960px', '600px'], //weight
                     content: req
                 });
@@ -33,17 +34,17 @@
 
     function tipList(b) {
         $.ajax({
-            url:"/news/listByTip",    //url address
-            dataType:"html",   //return json
-            type:"POST",   //way
-            data:{
-                tip:$(b).attr("tip")
+            url: "/news/listByTip",    //url address
+            dataType: "html",   //return json
+            type: "POST",   //way
+            data: {
+                tip: $(b).attr("tip")
             },
-            success:function(req){
+            success: function (req) {
                 layer.open({
                     type: 1,
                     skin: 'layui-layer-rim', //add frame
-                    title:'News list',
+                    title: 'News list',
                     area: ['960px', '480px'], //weight
                     content: req
                 });

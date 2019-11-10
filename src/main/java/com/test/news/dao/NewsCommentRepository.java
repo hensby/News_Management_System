@@ -10,7 +10,7 @@ import java.util.List;
  * Created by hengchao on 2019/10/24.
  */
 @Repository
-public interface NewsCommentRepository  extends JpaRepository<NewsComment, Integer> {       //extend jpa to operate db
+public interface NewsCommentRepository extends JpaRepository<NewsComment, Integer> {       //extend jpa to operate db
 
     List<NewsComment> findByNewsId(Integer newsId);
 

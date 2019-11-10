@@ -18,14 +18,14 @@ public class NewsTypeService {
     @Autowired
     private NewsTypeRepository newsTypeRepository;
 
-    public List<NewsType> findAll(){
+    public List<NewsType> findAll() {
         return newsTypeRepository.findAll();
     }
 
-    public void save(NewsType newsType){
-        if(newsType.getId()==null){
+    public void save(NewsType newsType) {
+        if (newsType.getId() == null) {
             newsType.setCreateTime(new Date());
-        }else{
+        } else {
             newsType.setCreateTime(newsTypeRepository.findById(newsType.getId()).orElse(new NewsType()).getCreateTime());
             //find by id. orelse() is to ignor Null pointer exception
         }
@@ -34,11 +34,11 @@ public class NewsTypeService {
     }
 
 
-    public void del(Integer id){
+    public void del(Integer id) {
         newsTypeRepository.deleteById(id);
     }
 
-    public List<NewsType> findByName(String name){
+    public List<NewsType> findByName(String name) {
         return newsTypeRepository.findByName(name);
     }
 }

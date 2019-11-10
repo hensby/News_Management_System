@@ -51,42 +51,48 @@ public class NewsController {
 
     @LoginRequired
     @RequestMapping("list.htm")
-    public String newsList(Model model)throws Exception{
+    public String newsList(Model model) throws Exception {
 
         List<News> news = newsService.findAll();
 
         log.info("1111111");
-        model.addAttribute("newsList",news);
+        model.addAttribute("newsList", news);
         return "news/list";
     }
 
     @RequestMapping("info")
-    public String info(Model model, Integer id, HttpSession session)throws Exception{
+    public String info(Model model, Integer id, HttpSession session) throws Exception {
         News news = newsService.findOne(id);
+        if (news.getIsTop() == true) {
+            String str = newsService.getUrl(news.getContent());
+            log.info("content: {}", str);
+            news.setContent(str);
+//            newsService.save(news);
+        }
         //read
         User user = (User) session.getAttribute("user");
-        if(user!=null){
+        if (user != null) {
             NewsUser newsUser = newsUserRepository.findByUserId(user.getId());
-            if(newsUser==null){
+            if (newsUser == null) {
                 newsUser = new NewsUser();
                 newsUser.setNum(1);
-            }else{
-                newsUser.setNum(newsUser.getNum()+1);
+            } else {
+                newsUser.setNum(newsUser.getNum() + 1);
             }
             newsUser.setUserId(user.getId());
             newsUser.setTypeId(news.getTypeId());
             newsUserRepository.save(newsUser);
         }
-        news.setNum(news.getNum()+1);
-        newsService.save(news);
-        model.addAttribute("news",news);
+        news.setNum(news.getNum() + 1);
+//        newsService.save(news);
+        model.addAttribute("news", news);
         log.info("2222222");
         return "news/showNews";
     }
 
 
     @RequestMapping("listByType")
-    public String listByType(Model model,Integer typeId){
+    public String listByType(Model model, Integer typeId) {
         try {
             //=============================================================
             // Authenticate
@@ -101,62 +107,61 @@ public class NewsController {
             e.printStackTrace();
         }
         List<News> news = newsService.listByType(typeId);
-        model.addAttribute("newsList",news);
+        model.addAttribute("newsList", news);
 
         log.info("333333");
         return "news/showList";
     }
 
     @RequestMapping("newsUser")
-    public String newsUser(Model model,HttpSession session){
+    public String newsUser(Model model, HttpSession session) {
         User user = (User) session.getAttribute("user");
-        if(user==null){
+        if (user == null) {
             return "redirect:/user/login";
         }
-        List<NewsUser> list =  newsUserRepository.findByUserIdOrderByNumDesc(user.getId());
+        List<NewsUser> list = newsUserRepository.findByUserIdOrderByNumDesc(user.getId());
         List<Integer> typeIds = new ArrayList<>(3);
         for (NewsUser newsUser : list) {
-            if(typeIds.size()<3){
+            if (typeIds.size() < 3) {
                 typeIds.add(newsUser.getTypeId());
             }
         }
         List<News> news = newsService.findByTypeIdIn(typeIds);
         List<News> news2 = new ArrayList<>();
         for (News news1 : news) {
-            if(typeIds.size()<10){
+            if (typeIds.size() < 10) {
                 news2.add(news1);
             }
         }
-        model.addAttribute("newsList",news2);
+        model.addAttribute("newsList", news2);
         return "news/showList";
     }
 
     @RequestMapping("listByTip")
-    public String listByTip(Model model,String tip){
+    public String listByTip(Model model, String tip) {
         List<News> news = newsService.listByTip(tip);
-        model.addAttribute("newsList",news);
+        model.addAttribute("newsList", news);
         return "news/showList";
     }
 
     @LoginRequired
     @RequestMapping("savePage")
-    public String savePage(Model model,Integer id)throws Exception{
+    public String savePage(Model model, Integer id) throws Exception {
         News news = new News();
-        if(id!=null){
+        if (id != null) {
             news = newsService.getOne(id);
-            model.addAttribute("id",id);
+            model.addAttribute("id", id);
         }
         model.addAttribute("newsTypes", newsTypeService.findAll());
-        model.addAttribute("news",news);
+        model.addAttribute("news", news);
         return "news/info";
     }
 
     @LoginRequired
     @RequestMapping("save")
     @ResponseBody
-    public boolean save(Model model,News news)throws Exception{
-        if ("<p><br></p>".equals(news.getContent())){
-//            log.info("qweqweqweqwe"+news.getContent());
+    public boolean save(Model model, News news) throws Exception {
+        if ("<p><br></p>".equals(news.getContent())) {
             news.setContent(newsService.getOne(news.getId()).getContent());
         }
         newsService.save(news);
@@ -166,14 +171,14 @@ public class NewsController {
     @LoginRequired
     @RequestMapping("del")
     @ResponseBody
-    public boolean save(Model model,Integer id)throws Exception{
+    public boolean save(Model model, Integer id) throws Exception {
         newsService.delete(id);
         return true;
     }
 
     @RequestMapping("tips")
     @ResponseBody
-    public String[] tips(String title)throws Exception{
+    public String[] tips(String title) throws Exception {
 //        CNFactory factory =  CNFactory.getInstance("F:\\fnlp\\models");
         String[] words = cnFactory.seg(title);
         return words;

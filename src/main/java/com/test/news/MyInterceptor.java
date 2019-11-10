@@ -13,20 +13,20 @@ import java.lang.annotation.Annotation;
 /**
  * Created by Administrator on 2019/9/28.
  */
-public class MyInterceptor implements HandlerInterceptor{
+public class MyInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         if (handler instanceof HandlerMethod) {
             LoginRequired loginRequired = findAnnotation((HandlerMethod) handler, LoginRequired.class);
             //without authority
-            if(loginRequired==null){
+            if (loginRequired == null) {
                 return true;
-            }else{
-               SystemUser systemUser = (SystemUser) request.getSession().getAttribute("systemUser");
-               if(systemUser == null){
-                   response.sendRedirect("/system/login");
-                   return false;
-               }
+            } else {
+                SystemUser systemUser = (SystemUser) request.getSession().getAttribute("systemUser");
+                if (systemUser == null) {
+                    response.sendRedirect("/system/login");
+                    return false;
+                }
             }
         }
         return true;

@@ -13,15 +13,14 @@ import java.util.List;
 @Repository
 public interface NewsTipRepository extends JpaRepository<NewsTip, Integer> {        //extend jpa to operate db
 
-    void  deleteNewsTipByNewsId(Integer newsId);
+    void deleteNewsTipByNewsId(Integer newsId);
 
 
     List<NewsTip> findByTip(String tip);
 
-    NewsTip findByNewsIdAndTip(Integer newsId,String tip);
+    NewsTip findByNewsIdAndTip(Integer newsId, String tip);
 
     List<NewsTip> findByNewsId(Integer newsId);
-
 
 
 }

@@ -16,7 +16,7 @@ public class FNLPUtil {
     String path;
 
     @Bean
-    public CNFactory cnFactory(){
+    public CNFactory cnFactory() {
 
         try {
             return CNFactory.getInstance(path);

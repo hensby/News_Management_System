@@ -25,35 +25,38 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
     @LoginRequired
     @RequestMapping(value = "/userList.htm")
-    public String userList(Model model){
-        model.addAttribute("list",userService.findAll());
+    public String userList(Model model) {
+        model.addAttribute("list", userService.findAll());
         return "user/list";
     }
+
     @LoginRequired
     @RequestMapping("del")
     @ResponseBody
-    public boolean del(Model model,Integer id){
+    public boolean del(Model model, Integer id) {
         userService.del(id);
         return true;
     }
+
     @LoginRequired
     @RequestMapping(value = "save")
     @ResponseBody
-    public boolean save(User user){
-        log.info("ksjzdhfkjsadhfj"+user.getPwd());
-        if (user.getPwd().isEmpty()||user.getName().isEmpty()){
+    public boolean save(User user) {
+        log.info("ksjzdhfkjsadhfj" + user.getPwd());
+        if (user.getPwd().isEmpty() || user.getName().isEmpty()) {
             return false;
         }
-        if (user.getId()==null){
+        if (user.getId() == null) {
 //            log.info("aaaaaaaaaa"+user.getCreateTime().toString());
-           user.setCreateTime(new Date());
-        }else{
+            user.setCreateTime(new Date());
+        } else {
 //            User u2 = userService.findById(user.getId());
             User u2 = userService.findByName(user.getName());
 //            if(u2==null){
-                user.setCreateTime(userService.findById(user.getId()).getCreateTime());
+            user.setCreateTime(userService.findById(user.getId()).getCreateTime());
 //            }
         }
 //        log.info("cccccccccccc"+user.getCreateTime().toString());
@@ -62,22 +65,22 @@ public class UserController {
         return true;
     }
 
-    @RequestMapping(value = "login",method = RequestMethod.GET)
-    public String login(){
+    @RequestMapping(value = "login", method = RequestMethod.GET)
+    public String login() {
         return "login";
     }
 
-    @RequestMapping(value = "login",method = RequestMethod.POST)
+    @RequestMapping(value = "login", method = RequestMethod.POST)
     @ResponseBody
-    public boolean login(String name, String pwd, HttpServletRequest request){
-        User user =  userService.findByName(name);
-        if(user==null){
+    public boolean login(String name, String pwd, HttpServletRequest request) {
+        User user = userService.findByName(name);
+        if (user == null) {
             return false;
         }
-        if(!user.getPwd().equals(pwd)){
+        if (!user.getPwd().equals(pwd)) {
             return false;
         }
-        request.getSession().setAttribute("user",user);
+        request.getSession().setAttribute("user", user);
         return true;
     }
 }

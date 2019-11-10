@@ -26,29 +26,28 @@ public class SystemController {
 
     @LoginRequired
     @GetMapping(value = "/")
-    public String index(){
+    public String index() {
         return "system";
     }
 
     @GetMapping(value = "/login")
-    public String login(){
+    public String login() {
         return "systemLogin";
     }
 
     @PostMapping(value = "/login")
     @ResponseBody
-    public boolean login2(String name, String pwd, HttpSession session){
+    public boolean login2(String name, String pwd, HttpSession session) {
         List<SystemUser> systemUsers = systemUserRepository.findByName(name);
-        if(systemUsers !=null && !systemUsers.isEmpty()){
+        if (systemUsers != null && !systemUsers.isEmpty()) {
             SystemUser systemUser = systemUsers.get(0);
-            if(systemUser.getPwd().equals(pwd)){
-                session.setAttribute("systemUser",systemUser);
+            if (systemUser.getPwd().equals(pwd)) {
+                session.setAttribute("systemUser", systemUser);
                 return true;
             }
         }
         return false;
     }
-
 
 
 }

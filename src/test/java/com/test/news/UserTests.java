@@ -39,12 +39,15 @@ public class UserTests {
 
     @Test
     public void testLogin() throws Exception {
-        Map<String, String> map = new HashMap<String,String>();
-        map.put("hensby", "123456,true");map.put("tom", "123,true");map.put("admin", "admin,false");
-        map.put("", "admin,false");map.put("admin", " ,false");
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("hensby", "123456,true");
+        map.put("tom", "123,true");
+        map.put("admin", "admin,false");
+        map.put("", "admin,false");
+        map.put("admin", " ,false");
         Object[] l;
         l = map.keySet().toArray();
-        for(int i = 0;i < map.size(); i = i+1) {
+        for (int i = 0; i < map.size(); i = i + 1) {
             MvcResult mvcResult = mockMvc.perform(
                     MockMvcRequestBuilders.post("/user/login")
                             .contentType(MediaType.APPLICATION_FORM_URLENCODED)

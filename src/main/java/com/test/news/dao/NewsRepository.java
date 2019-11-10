@@ -14,12 +14,12 @@ import java.util.List;
 @Repository
 public interface NewsRepository extends JpaRepository<News, Integer> {          //extend jpa to operate db
 
-        List<News> findByTypeIdOrderByDate(Integer typeId);
+    List<News> findByTypeIdOrderByDate(Integer typeId);
 
-        List<News> findByTypeIdOrderByDateDesc(Integer type);
+    List<News> findByTypeIdOrderByDateDesc(Integer type);
 
-        List<News> findByTypeIdInOrderByDateDesc(List<Integer> typeId);
+    List<News> findByTypeIdInOrderByDateDesc(List<Integer> typeId);
 
-        List<News> findByTitle(String title);
+    List<News> findByTitle(String title);
 
 }

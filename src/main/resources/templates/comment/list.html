@@ -19,7 +19,8 @@
                 <td th:text="${news.date}"></td>
                 <td>
                     <div class="btn-group">
-                        <a href="#" th:attr="pid=${news.id}"  onclick="del(this)"  class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> delete</a>
+                        <a href="#" th:attr="pid=${news.id}" onclick="del(this)" class="btn btn-danger btn-xs"><i
+                                class="fa fa-trash-o"></i> delete</a>
                     </div>
                 </td>
             </tr>
@@ -44,21 +45,21 @@
     function del(b) {
         title:'info'
         layer.confirm('Are you sure you want to delete？？', {
-            btn: ['Yes','Cancel'] //按钮
-        }, function(){
+            btn: ['Yes', 'Cancel'] //按钮
+        }, function () {
             $.ajax({
-                url:"/comment/del",    //请求的url地址
-                dataType:"text",   //返回格式为json
-                type:"POST",   //请求方式
-                data:{
-                    id:$(b).attr("pid")
+                url: "/comment/del",    //请求的url地址
+                dataType: "text",   //返回格式为json
+                type: "POST",   //请求方式
+                data: {
+                    id: $(b).attr("pid")
                 },
-                success:function(req){
+                success: function (req) {
                     layer.closeAll();
                     $("#commentMag").click();
                 }
             });
-        }, function(){
+        }, function () {
         });
     }
 </script>

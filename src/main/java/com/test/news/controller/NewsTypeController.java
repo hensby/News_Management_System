@@ -21,15 +21,15 @@ public class NewsTypeController {
 
     @LoginRequired
     @RequestMapping(value = "/list.htm")
-    public String list(Model model){
-        model.addAttribute("list",newsTypeService.findAll());
+    public String list(Model model) {
+        model.addAttribute("list", newsTypeService.findAll());
         return "newsType/list";
     }
 
     @LoginRequired
     @RequestMapping("del")
     @ResponseBody
-    public boolean del(Model model,Integer id){
+    public boolean del(Model model, Integer id) {
         newsTypeService.del(id);
         return true;
     }
@@ -37,7 +37,7 @@ public class NewsTypeController {
     @LoginRequired
     @RequestMapping(value = "save")
     @ResponseBody
-    public boolean save(Model model, NewsType newsType){
+    public boolean save(Model model, NewsType newsType) {
         newsTypeService.save(newsType);
         return true;
     }

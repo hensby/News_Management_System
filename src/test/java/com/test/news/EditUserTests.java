@@ -36,36 +36,40 @@ public class EditUserTests {
 
     @Test
     public void testEditUser() throws Exception {
-        Map<String, String> map1 = new HashMap<String,String>();
-        Map<String, String> map2 = new HashMap<String,String>();
-        map1.put("77","hensby,123456,true");map1.put("77","hensby1,123456,true");
-        map1.put("77","hensby,123,true");
-        map1.put("77","hensby,,false");map1.put("77",",123456,false");             //edit user
-        map2.put("test",",123456,true");map2.put("test",",,false");                 //add news
+        Map<String, String> map1 = new HashMap<String, String>();
+        Map<String, String> map2 = new HashMap<String, String>();
+        map1.put("77", "hensby,123456,true");
+        map1.put("77", "hensby1,123456,true");
+        map1.put("77", "hensby,123,true");
+        map1.put("77", "hensby,,false");
+        map1.put("77", ",123456,false");             //edit user
+        map2.put("test", ",123456,true");
+        map2.put("test", ",,false");                 //add news
 
-        Object[] l;Object[] l2;
+        Object[] l;
+        Object[] l2;
         l = map1.keySet().toArray();
         l2 = map2.keySet().toArray();
-        for(int i = 0;i < map1.size(); i = i+1) {
+        for (int i = 0; i < map1.size(); i = i + 1) {
             MvcResult mvcResult = mockMvc.perform(
                     MockMvcRequestBuilders.post("/user/save")
                             .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                             .param("id", l[i].toString())
                             .param("name", map1.get(l[i]).split(",")[0])
-                            .param("pwd",map1.get(l[i]).split(",")[1])
+                            .param("pwd", map1.get(l[i]).split(",")[1])
             ).andExpect(MockMvcResultMatchers.content().string(map1.get(l[i]).split(",")[2]))
                     .andDo(MockMvcResultHandlers.print())
                     .andReturn();
 
             log.info(mvcResult.getResponse().getContentAsString());
         }
-        for(int i = 0;i < map2.size(); i = i+1) {
+        for (int i = 0; i < map2.size(); i = i + 1) {
             MvcResult mvcResult = mockMvc.perform(
                     MockMvcRequestBuilders.post("/user/save")
                             .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                             .param("name", l2[i].toString())
                             .param("id", map2.get(l2[i]).split(",")[0])
-                            .param("pwd",map2.get(l2[i]).split(",")[1])
+                            .param("pwd", map2.get(l2[i]).split(",")[1])
             ).andExpect(MockMvcResultMatchers.content().string(map2.get(l2[i]).split(",")[2]))
                     .andDo(MockMvcResultHandlers.print())
                     .andReturn();

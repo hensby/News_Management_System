@@ -1,7 +1,7 @@
-<div class="row" xmlns:th="http://www.w3.org/1999/xhtml" >
+<div class="row" xmlns:th="http://www.w3.org/1999/xhtml">
     <div class="widget-body">
         <div class="table-toolbar">
-            <a  href="javascript:void(0);" onclick="save()" class="btn btn-default btn-success">
+            <a href="javascript:void(0);" onclick="save()" class="btn btn-default btn-success">
                 Add type
             </a>
         </div>
@@ -34,8 +34,10 @@
                 <td th:text="${newsType.updateTime}">Alex Nilson</td>
                 <td>
                     <div class="btn-group">
-                        <a href="#" th:attr="pid=${newsType.id},pName=${newsType.name}"  onclick="save(this)"  class="btn btn-info btn-xs"><i class="fa fa-edit"></i> edit</a>
-                        <a href="#" th:attr="pid=${newsType.id},pName=${newsType.name}"  onclick="del(this)"  class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> delete</a>
+                        <a href="#" th:attr="pid=${newsType.id},pName=${newsType.name}" onclick="save(this)"
+                           class="btn btn-info btn-xs"><i class="fa fa-edit"></i> edit</a>
+                        <a href="#" th:attr="pid=${newsType.id},pName=${newsType.name}" onclick="del(this)"
+                           class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> delete</a>
                     </div>
                 </td>
             </tr>
@@ -45,16 +47,16 @@
 </div>
 
 </div>
-<input id="userId"  hidden/>
+<input id="userId" hidden/>
 <div class="row" id="userInfo" style="display: none;padding: 10px;">
-    <div >
+    <div>
         <div class="widget">
             <div class="widget-body">
                 <div class="collapse in">
                     <form role="form">
                         <div class="form-group">
                             <label>Type name</label>
-                            <input type="text" class="form-control input-sm userName"  user_name placeholder="Type name">
+                            <input type="text" class="form-control input-sm userName" user_name placeholder="Type name">
                         </div>
                     </form>
                     <a href="javascript:void(0);" class="btn btn-primary" onclick="saveData()">save</a>
@@ -75,62 +77,63 @@
 <script>
     InitiateEditableDataTable.init();
     $(".DTTT").hide();
+
     function save(b) {
-        var name ;
-        if(b){
+        var name;
+        if (b) {
             $("#userId").val($(b).attr("pid"));
             name = $(b).attr("pname");
-        }else{
+        } else {
             $("#userId").val("");
-            name="";
+            name = "";
         }
         layer.open({
             type: 1,
-            title:"Edit type",
+            title: "Edit type",
             skin: 'layui-layer-rim', //frame
             area: ['320px', '220px'], //heignt weight
-            content: $("#userInfo").html().replace("user_name",'value="'+name+'"')
+            content: $("#userInfo").html().replace("user_name", 'value="' + name + '"')
         });
     }
-    
+
     function saveData() {
         layer.confirm('Are you sure you want to save？？', {
-            btn: ['Yes','Cancel'] //button
-        }, function(){
+            btn: ['Yes', 'Cancel'] //button
+        }, function () {
             $.ajax({
-                url:"/newsType/save",    //url address
-                dataType:"text",   //return json
-                type:"POST",   //way
-                data:{
-                    id:$("#userId").val(),
-                    name:$(".userName").eq(1).val()
+                url: "/newsType/save",    //url address
+                dataType: "text",   //return json
+                type: "POST",   //way
+                data: {
+                    id: $("#userId").val(),
+                    name: $(".userName").eq(1).val()
                 },
-                success:function(req){
+                success: function (req) {
                     layer.closeAll();
                     $("#newsTypeMsg").click();
                 }
             });
-        }, function(){
+        }, function () {
         });
     }
 
     function del(b) {
         layer.confirm('Are you sure you want to delete？', {
-            title:'info', btn: ['Yes','Cancel'] //button
-        }, function(){
+            title: 'info', btn: ['Yes', 'Cancel'] //button
+        }, function () {
             $.ajax({
-                url:"/newsType/del",    //url address
-                dataType:"text",   //return json
-                type:"POST",   //way
-                data:{
-                    id:$(b).attr("pid")
+                url: "/newsType/del",    //url address
+                dataType: "text",   //return json
+                type: "POST",   //way
+                data: {
+                    id: $(b).attr("pid")
                 },
-                success:function(req){
+                success: function (req) {
                     layer.closeAll();
                     $("#newsTypeMsg").click();
                 }
             });
-        }, function(){
+        }, function () {
         });
     }
 

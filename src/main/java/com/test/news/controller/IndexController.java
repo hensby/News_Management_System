@@ -22,18 +22,18 @@ public class IndexController {
     private NewsTypeService newsTypeService;
 
     @RequestMapping(value = "/")
-    public String index(Model model, HttpSession httpSession){
-       List<NewsType> newsTypeList =  newsTypeService.findAll();
-       model.addAttribute("newsTypeList",newsTypeList);
-       User user = (User) httpSession.getAttribute("user");
-        model.addAttribute("user",user);
-       if(user!=null){
-           model.addAttribute("userName",user.getName());
-       }else{
-           model.addAttribute("userName","Login");
-       }
+    public String index(Model model, HttpSession httpSession) {
+        List<NewsType> newsTypeList = newsTypeService.findAll();
+        model.addAttribute("newsTypeList", newsTypeList);
+        User user = (User) httpSession.getAttribute("user");
+        model.addAttribute("user", user);
+        if (user != null) {
+            model.addAttribute("userName", user.getName());
+        } else {
+            model.addAttribute("userName", "Login");
+        }
 
-       return "index";
+        return "index";
     }
 
 }

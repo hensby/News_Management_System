@@ -35,25 +35,25 @@ public class NewsTests {
 
     @Test
     public void testNews() throws Exception {
-        Map<String, String> map = new HashMap<String,String>();
-        map.put("INVESTIGATING HUMAN INFERTILITY VIA THE WATER FLEA","127,1,TUESDAY OCT 15 2019 • DANA JENNINGS : UT ARLINGTON MEDIA RELATIONS,<p><br></p>,true");
-        map.put("INVESTIGATING HUMAN INFERTILITY VIA THE WATER FLEA1","127,2,TUESDAY OCT 15 2019 • DANA JENNINGS : UT ARLINGTON MEDIA RELATIONS,<p><br></p>,true");
-        map.put("INVESTIGATING HUMAN INFERTILITY VIA THE WATER FLEA2","127,2,TUESDAY OCT 15 2019 • DANA JENNINGS : UT ARLINGTON MEDIA RELATIONS,<p><br></p>,true");
-        map.put("INVESTIGATING HUMAN INFERTILITY VIA THE WATER FLEA3","127,1,test,<p><br></p>,true");
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("INVESTIGATING HUMAN INFERTILITY VIA THE WATER FLEA", "127,1,TUESDAY OCT 15 2019 • DANA JENNINGS : UT ARLINGTON MEDIA RELATIONS,<p><br></p>,true");
+        map.put("INVESTIGATING HUMAN INFERTILITY VIA THE WATER FLEA1", "127,2,TUESDAY OCT 15 2019 • DANA JENNINGS : UT ARLINGTON MEDIA RELATIONS,<p><br></p>,true");
+        map.put("INVESTIGATING HUMAN INFERTILITY VIA THE WATER FLEA2", "127,2,TUESDAY OCT 15 2019 • DANA JENNINGS : UT ARLINGTON MEDIA RELATIONS,<p><br></p>,true");
+        map.put("INVESTIGATING HUMAN INFERTILITY VIA THE WATER FLEA3", "127,1,test,<p><br></p>,true");
         //edit news
-        map.put("test",",1,test,<p>test</p>,true");             //add news
+        map.put("test", ",1,test,<p>test</p>,true");             //add news
 
         Object[] l;
         l = map.keySet().toArray();
-        for(int i = 0;i < map.size(); i = i+1) {
+        for (int i = 0; i < map.size(); i = i + 1) {
             MvcResult mvcResult = mockMvc.perform(
                     MockMvcRequestBuilders.post("/news/save")
                             .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                             .param("title", l[i].toString())
                             .param("id", map.get(l[i]).split(",")[0])
-                            .param("typeid",map.get(l[i]).split(",")[1])
-                            .param("author",map.get(l[i]).split(",")[2])
-                            .param("content",map.get(l[i]).split(",")[3])
+                            .param("typeid", map.get(l[i]).split(",")[1])
+                            .param("author", map.get(l[i]).split(",")[2])
+                            .param("content", map.get(l[i]).split(",")[3])
             ).andExpect(MockMvcResultMatchers.content().string(map.get(l[i]).split(",")[4]))
                     .andDo(MockMvcResultHandlers.print())
                     .andReturn();
