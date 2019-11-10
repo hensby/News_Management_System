@@ -63,7 +63,7 @@ public class NewsController {
     @RequestMapping("info")
     public String info(Model model, Integer id, HttpSession session) throws Exception {
         News news = newsService.findOne(id);
-        if (news.getIsTop() == true) {
+        if (news.getIsTop() == false) {
             String str = newsService.getUrl(news.getContent());
             log.info("content: {}", str);
             news.setContent(str);
@@ -164,6 +164,7 @@ public class NewsController {
         if ("<p><br></p>".equals(news.getContent())) {
             news.setContent(newsService.getOne(news.getId()).getContent());
         }
+        news.setIsTop(true);
         newsService.save(news);
         return true;
     }

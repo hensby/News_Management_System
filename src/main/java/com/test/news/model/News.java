@@ -17,7 +17,7 @@ public class News {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;//id
     private String title;//title
-    @Column(columnDefinition = "text")
+    @Column(columnDefinition = "MEDIUMTEXT")
     private String content;//contents
     private Date date;//time
     private Integer num;//comment number

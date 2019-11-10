@@ -5,6 +5,7 @@ import com.test.news.LoginRequired;
 import com.test.news.model.NewsComment;
 import com.test.news.model.User;
 import com.test.news.service.NewsCommentService;
+import com.test.news.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,9 @@ public class NewsCommentController {
     @Autowired
     NewsCommentService newsCommentService;
 
+    @Autowired
+    UserService userService;
+
     @LoginRequired
     @RequestMapping("list")
     public String list(Model model) {
@@ -50,6 +54,7 @@ public class NewsCommentController {
     public int add(String content, Integer newsId, HttpSession session) {
         User user = (User) session.getAttribute("user");
         if (user == null) {
+//            user = userService.findById(77);
             return 0;
         }
 

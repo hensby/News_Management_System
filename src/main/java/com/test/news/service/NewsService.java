@@ -114,7 +114,7 @@ public class NewsService {
         if (news.getId() == null) {
             news.setDate(new Date());
             news.setNum(0);
-            news.setIsTop(true);            //check the news from.
+            //check the news from.
         } else {
             News n1 = newsRepository.findById(news.getId()).orElse(new News());
             news.setDate(n1.getDate());
