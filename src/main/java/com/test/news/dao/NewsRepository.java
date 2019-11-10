@@ -20,4 +20,6 @@ public interface NewsRepository extends JpaRepository<News, Integer> {          
 
         List<News> findByTypeIdInOrderByDateDesc(List<Integer> typeId);
 
+        List<News> findByTitle(String title);
+
 }

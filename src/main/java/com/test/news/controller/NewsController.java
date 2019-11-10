@@ -46,6 +46,7 @@ public class NewsController {
     @Autowired
     NewsUserRepository newsUserRepository;
 
+    @Autowired
     BingNewsSearchService bingNewsSearchService;
 
     @LoginRequired
@@ -86,8 +87,6 @@ public class NewsController {
 
     @RequestMapping("listByType")
     public String listByType(Model model,Integer typeId){
-        List<News> news = newsService.listByType(typeId);
-        model.addAttribute("newsList",news);
         try {
             //=============================================================
             // Authenticate
@@ -96,10 +95,14 @@ public class NewsController {
             final String subscriptionKey = "048f8f4715ce4aa8bef4eded60bd44e2";
             BingNewsSearchAPI bingNewsSearchAPIClient = BingNewsSearchManager.authenticate(subscriptionKey);
             bingNewsSearchService.runSample(bingNewsSearchAPIClient);
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
+        List<News> news = newsService.listByType(typeId);
+        model.addAttribute("newsList",news);
+
         log.info("333333");
         return "news/showList";
     }

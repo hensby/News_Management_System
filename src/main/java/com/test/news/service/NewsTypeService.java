@@ -38,5 +38,7 @@ public class NewsTypeService {
         newsTypeRepository.deleteById(id);
     }
 
-
+    public List<NewsType> findByName(String name){
+        return newsTypeRepository.findByName(name);
+    }
 }

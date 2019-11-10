@@ -135,5 +135,6 @@ public class NewsService {
         return newsRepository.findById(id).orElse(new News());
     }
 
+    public List<News> findByName(String name){ return newsRepository.findByTitle(name);}
 
 }

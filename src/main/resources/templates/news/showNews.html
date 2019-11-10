@@ -20,7 +20,7 @@
 </div>
 <script>
     function AddComment(b) {
-        var indexp = layer.prompt({title: 'Comment', formType: 2}, function(text, index){
+        var indexp = layer.prompt({title: 'Comment', formType: 2, btn: ['Yes','No']}, function(text, index){
             if(text!=""){
                 $.ajax({
                     url:"/comment/add",    //url address
@@ -31,14 +31,24 @@
                         content:text
                     },
                     success:function(req){
-                        if(req==true){
+                        if(req === 1){
                             layer.close(indexp);
-                            layer.alert("Comment successful");
+                            layer.alert("Comment successful",{
+                                btn: ['Yes']
+                            });
                             $("#potable").find("tr").eq(0).before('<tr><td>Your comments</td><td>'+text+'</td></tr>')
-                        }else{
-                            location.href="user/login"
                         }
+                        if (req === 0){
+                            location.href="user/login"
+                        }if (req === 2){
+                            layer.close(indexp);
+                            layer.alert("Comment abuse, please try again",{
+                                btn: ['Yes']
+                            });
+                        }
+
                     }
+
                 });
             }
         });

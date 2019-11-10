@@ -84,6 +84,13 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 			<version>2.1.8.RELEASE</version>
 		</dependency>
+		<dependency>
+			<groupId>paralleldots-1.0.2</groupId>
+			<artifactId>paralleldots-1.0.2</artifactId>
+			<version>paralleldots-1.0.2</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/paralleldots-1.0.2.jar</systemPath>
+		</dependency>
 	</dependencies>
 
 
