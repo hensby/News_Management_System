@@ -1,0 +1,87 @@
+<div class="row" style="padding: 20px;" xmlns:th="http://www.w3.org/1999/xhtml">
+    <h4 class="text-center text-info" th:text="${news.title}"></h4>
+    <p class="text-warning">content</p>
+    <iframe
+            src=""
+            id="aaa" width="1290" height="800">
+    </iframe>
+    <div class="text-muted" th:utext="${news.content}">
+
+    </div>
+    <div style="background-color: #2a6496; height: 2px;width: 100%;"></div>
+
+    <div style="padding: 10px;">
+        <p>Comment list</p> <a class="btn btn-blue" th:attr="pid=${news.id}" onclick="AddComment(this)">Comment</a>
+    </div>
+    <div style="padding: 1px; padding-left:2000px; padding-top: 10px">
+        <a id="bt1" class="btn btn-blue" th:attr="newsId=${news.id}" onclick="getUrl(this)"></a>
+    </div>
+    <div style="height: 300px;overflow: auto;">
+        <table class="table bordered-1 " id="potable">
+            <tr style="display: none;"></tr>
+            <tr th:each="comment:${news.comments}">
+                <td th:text="${comment.userName}" class="col-sm-3 text-info"></td>
+                <td th:text="${comment.content}" class="col-sm-9"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script>
+    setTimeout(function aaa(){
+        var button = document.getElementById('bt1');
+        button.click();//click auto
+    },1000);
+
+    // setTimeout(
+    function getUrl(b) {
+        $.ajax({
+            url: "/news/check",    //url address
+            dataType: "json",   //return json
+            type: "POST",   //way
+            data: {
+                newsId: $(b).attr("newsId")
+            },
+            success: function (req) {
+                document.getElementById("aaa").src=req[0];
+            }
+        });
+    }
+    // , 3000);
+
+    function AddComment(b) {
+        var indexp = layer.prompt({title: 'Comment', formType: 2, btn: ['Yes', 'No']}, function (text, index) {
+            if (text != "") {
+                $.ajax({
+                    url: "/comment/add",    //url address
+                    dataType: "json",   //return json
+                    type: "POST",   //way
+                    data: {
+                        newsId: $(b).attr("pid"),
+                        content: text
+                    },
+                    success: function (req) {
+                        if (req === 1) {
+                            layer.close(indexp);
+                            layer.alert("Comment successful", {
+                                title: "info", btn: ['Yes']
+                            });
+                            $("#potable").find("tr").eq(0).before('<tr><td>Your comments</td><td>' + text + '</td></tr>')
+                        }
+                        if (req === 0) {
+                            location.href = "user/login"
+                        }
+                        if (req === 2) {
+                            layer.close(indexp);
+                            layer.alert("Comment abuse, please try again", {
+                                title: "info", btn: ['Yes']
+                            });
+                        }
+
+                    }
+
+                });
+            }
+        });
+    }
+</script>
+

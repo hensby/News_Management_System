@@ -7,6 +7,8 @@ import org.fnlp.nlp.cn.CNFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 import retrofit2.http.Url;
 
 import java.io.BufferedReader;
@@ -171,6 +173,10 @@ public class NewsService {
             e.printStackTrace();
         }
         return url1;
+    }
+
+    public ModelAndView check(String url){
+        return  new ModelAndView(new RedirectView(url));
     }
 
 }

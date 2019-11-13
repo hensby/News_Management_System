@@ -17,9 +17,14 @@ import org.fnlp.nlp.cn.CNFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
@@ -60,15 +65,11 @@ public class NewsController {
         return "news/list";
     }
 
+
     @RequestMapping("info")
     public String info(Model model, Integer id, HttpSession session) throws Exception {
         News news = newsService.findOne(id);
-        if (news.getIsTop() == false) {
-            String str = newsService.getUrl(news.getContent());
-            log.info("content: {}", str);
-            news.setContent(str);
-//            newsService.save(news);
-        }
+
         //read
         User user = (User) session.getAttribute("user");
         if (user != null) {
@@ -87,7 +88,17 @@ public class NewsController {
 //        newsService.save(news);
         model.addAttribute("news", news);
         log.info("2222222");
-        return "news/showNews";
+        if (news.getIsTop() == false) {
+//            String str = newsService.getUrl(news.getContent());
+//            log.info("content: {}", str);
+//            news.setContent(str);
+//            newsService.save(news);
+
+            log.info("引起注意"+news.getContent());
+            return "news/showNews1";
+
+        }else{
+        return "news/showNews";}
     }
 
 
@@ -98,9 +109,9 @@ public class NewsController {
             // Authenticate
             // Set the BING_SEARCH_V7_SUBSCRIPTION_KEY environment variable with your subscription key,
             // then reopen your command prompt or IDE. If not, you may get an API key not found exception.
-            final String subscriptionKey = "048f8f4715ce4aa8bef4eded60bd44e2";
-            BingNewsSearchAPI bingNewsSearchAPIClient = BingNewsSearchManager.authenticate(subscriptionKey);
-            bingNewsSearchService.runSample(bingNewsSearchAPIClient);
+//            final String subscriptionKey = "048f8f4715ce4aa8bef4eded60bd44e2";
+//            BingNewsSearchAPI bingNewsSearchAPIClient = BingNewsSearchManager.authenticate(subscriptionKey);
+//            bingNewsSearchService.runSample(bingNewsSearchAPIClient);
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -183,6 +194,18 @@ public class NewsController {
 //        CNFactory factory =  CNFactory.getInstance("F:\\fnlp\\models");
         String[] words = cnFactory.seg(title);
         return words;
+    }
+
+    @RequestMapping("check")
+    @ResponseBody
+    public String[] check(int newsId){
+        News news = newsService.findOne(newsId);
+        log.info("url"+news.getContent());
+        String[] url = new String[2];
+        url[0] = news.getContent();
+        url[1] = "1111";
+//        return news.getContent();
+        return url;
     }
 
 }
