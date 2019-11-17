@@ -1,6 +1,6 @@
 package com.test.news.service;
 
-import com.test.news.FNLPUtil;
+//import com.test.news.FNLPUtil;
 import com.test.news.dao.*;
 import com.test.news.model.*;
 import org.fnlp.nlp.cn.CNFactory;

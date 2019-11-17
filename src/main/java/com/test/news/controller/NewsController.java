@@ -39,8 +39,8 @@ import java.util.List;
 @RequestMapping("news")
 public class NewsController {
 
-    @Autowired
-    CNFactory cnFactory;
+//    @Autowired
+//    CNFactory cnFactory;
 
     @Autowired
     NewsService newsService;
@@ -188,13 +188,13 @@ public class NewsController {
         return true;
     }
 
-    @RequestMapping("tips")
-    @ResponseBody
-    public String[] tips(String title) throws Exception {
-//        CNFactory factory =  CNFactory.getInstance("F:\\fnlp\\models");
-        String[] words = cnFactory.seg(title);
-        return words;
-    }
+//    @RequestMapping("tips")
+//    @ResponseBody
+//    public String[] tips(String title) throws Exception {
+////        CNFactory factory =  CNFactory.getInstance("F:\\fnlp\\models");
+//        String[] words = cnFactory.seg(title);
+//        return words;
+//    }
 
     @RequestMapping("check")
     @ResponseBody

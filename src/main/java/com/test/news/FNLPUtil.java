@@ -10,24 +10,24 @@ import org.springframework.context.annotation.Configuration;
 /**
  * Created by Hengchao on 2019/9/24.
  */
-@Slf4j
-@Configuration
-public class FNLPUtil {
-
-    @Value(value = "${fnlp.path}")
-    String path;
-
-    @Bean
-    public CNFactory cnFactory() {
-
+//@Slf4j
+//@Configuration
+//public class FNLPUtil {
+//
+//    @Value(value = "${fnlp.path}")
+//    String path;
+//
+//    @Bean
+//    public CNFactory cnFactory() {
+//
 //        try {
 //            return CNFactory.getInstance(path);
 //        } catch (LoadModelException e) {
 //            log.error("FNLPUtil: CNFactory.getInstance", e);
 //        }
-
-        return null;
-    }
+//
+//        return null;
+//    }
 
 //    public static CNFactory factory = null;
 //    static {
@@ -38,4 +38,4 @@ public class FNLPUtil {
 //        }
 //    }
 
-}
+//}
