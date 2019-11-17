@@ -11,13 +11,13 @@ import org.springframework.context.annotation.Configuration;
  * Created by Hengchao on 2019/9/24.
  */
 @Slf4j
-@Configuration
+//@Configuration
 public class FNLPUtil {
 
-    @Value(value = "${fnlp.path}")
+//    @Value(value = "${fnlp.path}")
     String path;
 
-    @Bean
+//    @Bean
     public CNFactory cnFactory() {
 
         try {

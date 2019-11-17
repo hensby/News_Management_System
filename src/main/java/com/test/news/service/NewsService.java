@@ -28,8 +28,8 @@ import java.util.List;
 @Service
 public class NewsService {
 
-    @Autowired
-    private CNFactory cnFactory;
+//    @Autowired
+//    private CNFactory cnFactory;
 
     @Autowired
     private NewsRepository newsRepository;
