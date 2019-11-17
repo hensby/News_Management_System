@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- Head -->
+<head>
+    <meta charset="utf-8"/>
+    <title>Main</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="shortcut icon" href="../assets/img/favicon.png" type="image/x-icon"/>
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../assets/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="../assets/css/weather-icons.min.css" rel="stylesheet"/>
+
+    <link href="../assets/css/beyond.min.css" rel="stylesheet"/>
+    <link href="../assets/css/demo.min.css" rel="stylesheet"/>
+    <link href="../assets/css/typicons.min.css" rel="stylesheet"/>
+    <link href="../assets/css/animate.min.css" rel="stylesheet"/>
+    <link id="skin-link" href="" rel="stylesheet" type="text/css"/>
+    <!--Page Related styles-->
+    <link href="../assets/css/dataTables.bootstrap.css" rel="stylesheet"/>
+    <script src="../assets/js/skins.min.js"></script>
+</head>
+<!-- /Head -->
+<!-- Body -->
+<body>
+<!-- Loading Container -->
+<div class="loading-container">
+    <div class="loading-progress">
+        <div class="rotator">
+            <div class="rotator">
+                <div class="rotator colored">
+                    <div class="rotator">
+                        <div class="rotator colored">
+                            <div class="rotator colored"></div>
+                            <div class="rotator"></div>
+                        </div>
+                        <div class="rotator colored"></div>
+                    </div>
+                    <div class="rotator"></div>
+                </div>
+                <div class="rotator"></div>
+            </div>
+            <div class="rotator"></div>
+        </div>
+        <div class="rotator"></div>
+    </div>
+</div>
+<!--  /Loading Container -->
+<!-- Navbar -->
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="navbar-container">
+            <div class="navbar-header pull-left">
+                <a href="#" class="navbar-brand">
+                    <small>
+                        <img src="assets/img/logo.png" alt=""/>
+                    </small>
+                </a>
+            </div>
+            <div class="sidebar-collapse" id="sidebar-collapse">
+                <i class="collapse-icon fa fa-bars"></i>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main-container container-fluid">
+    <div class="page-container">
+        <div class="page-sidebar" id="sidebar">
+            <ul class="nav sidebar-menu">
+                <li id="userMag" class="active ulli" url="/user/userList.htm">
+                    <a href="#">
+                        <i class="menu-icon glyphicon glyphicon-home"></i>
+                        <span class="menu-text">User management</span>
+                    </a>
+                </li>
+                <li class="ulli" id="newsMag" url="/news/list.htm">
+                    <a href="#">
+                        <i class="menu-icon glyphicon glyphicon-tasks"></i>
+                        <span class="menu-text">News management</span>
+                    </a>
+                </li>
+                <li id="commentMag" class="ulli" url="/comment/list">
+                    <a href="#">
+                        <i class="menu-icon fa fa-th"></i>
+                        <span class="menu-text">comment management</span>
+                    </a>
+                </li>
+                <li id="newsTypeMsg" class="ulli" url="/newsType/list.htm">
+                    <a href="#">
+                        <i class="menu-icon fa fa-desktop"></i>
+                        <span class="menu-text">classification management</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="page-content" style="padding-left: 15px;">
+    </div>
+</div>
+<script src="../assets/js/jquery-2.0.3.min.js"></script>
+<script src="../assets/js/bootstrap.min.js"></script>
+<script src="../assets/js/beyond.min.js"></script>
+<script src="../layer/layer.js"></script>
+<script>
+    $(".ulli").on('click', function () {
+        $(".ulli").removeClass("active");
+        var url = $(this).attr("url");
+        $(this).addClass("active");
+        $.ajax({
+            url: url,    //url
+            dataType: "html",   //return json
+            type: "GET",   //way
+            success: function (req) {
+                $(".page-content").html(req);
+            }
+        });
+    });
+    $("#userMag").click();
+</script>
+</body>
+</html>
