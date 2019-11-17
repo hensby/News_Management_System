@@ -18,11 +18,11 @@ public class FNLPUtil {
     @Bean
     public CNFactory cnFactory() {
 
-        try {
-            return CNFactory.getInstance(path);
-        } catch (LoadModelException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            return CNFactory.getInstance(path);
+//        } catch (LoadModelException e) {
+//            e.printStackTrace();
+//        }
 
         return null;
     }
