@@ -20,11 +20,11 @@ public class FNLPUtil {
     @Bean
     public CNFactory cnFactory() {
 
-        try {
-            return CNFactory.getInstance(path);
-        } catch (LoadModelException e) {
-            log.error("FNLPUtil: CNFactory.getInstance", e);
-        }
+//        try {
+//            return CNFactory.getInstance(path);
+//        } catch (LoadModelException e) {
+//            log.error("FNLPUtil: CNFactory.getInstance", e);
+//        }
 
         return null;
     }
