@@ -124,20 +124,20 @@ public class NewsService {
             news.setIsTop(n1.getIsTop());
         }
         news = newsRepository.save(news);
-        String[] tips = cnFactory.seg(news.getTitle());
-        if (tips != null) {
-            for (String tip : tips) {
-                if (tip.length() >= 2) {
-                    NewsTip newsTip = newsTipRepository.findByNewsIdAndTip(news.getId(), tip);
-                    if (newsTip == null) {
-                        newsTip = new NewsTip();
-                        newsTip.setNewsId(news.getId());
-                        newsTip.setTip(tip);
-                        newsTipRepository.save(newsTip);
-                    }
-                }
-            }
-        }
+//        String[] tips = cnFactory.seg(news.getTitle());
+//        if (tips != null) {
+//            for (String tip : tips) {
+//                if (tip.length() >= 2) {
+//                    NewsTip newsTip = newsTipRepository.findByNewsIdAndTip(news.getId(), tip);
+//                    if (newsTip == null) {
+//                        newsTip = new NewsTip();
+//                        newsTip.setNewsId(news.getId());
+//                        newsTip.setTip(tip);
+//                        newsTipRepository.save(newsTip);
+//                    }
+//                }
+//            }
+//        }
     }
 
     public News getOne(Integer id) {

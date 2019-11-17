@@ -24,7 +24,6 @@ public class FNLPUtil {
             return CNFactory.getInstance(path);
         } catch (LoadModelException e) {
             log.error("FNLPUtil: CNFactory.getInstance", e);
-            e.printStackTrace();
         }
 
         return null;
