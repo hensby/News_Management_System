@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * Created by Hengchao on 2019/9/24.
  */
-@Configuration
+//@Configuration
 public class FNLPUtil {
 
     @Value(value = "${fnlp.path}")
