@@ -80,6 +80,14 @@ public class NewsService {
         return list;
     }
 
+    public List<News> findByIstopIn(boolean istop) {
+        List<News> list = newsRepository.findByIsTop(istop);
+        for (News news : list) {
+            news.setTips(newsTipRepository.findByNewsId(news.getId()));
+        }
+        return list;
+    }
+
     public List<News> listByTip(String tip) {
         List<News> list = new ArrayList<>();
         List<NewsTip> newsTips = newsTipRepository.findByTip(tip);

@@ -22,4 +22,6 @@ public interface NewsRepository extends JpaRepository<News, Integer> {          
 
     List<News> findByTitle(String title);
 
+    List<News> findByIsTop(Boolean isTop);
+
 }

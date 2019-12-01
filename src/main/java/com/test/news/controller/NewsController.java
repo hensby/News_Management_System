@@ -137,8 +137,15 @@ public class NewsController {
                 typeIds.add(newsUser.getTypeId());
             }
         }
+        List<News> news3 = newsService.findByIstopIn(true);
         List<News> news = newsService.findByTypeIdIn(typeIds);
+
         List<News> news2 = new ArrayList<>();
+        for (News news1 : news3) {
+            if (typeIds.size() < 10) {
+                news2.add(news1);
+            }
+        }
         for (News news1 : news) {
             if (typeIds.size() < 10) {
                 news2.add(news1);
